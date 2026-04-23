@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>St. Joseph's College | Ad Multos Annos | Blue & Gold</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F8F6F0;
+      color: #0A2F5A;
+      scroll-behavior: smooth;
+    }
+
+    /* Blue & Gold theme */
+    :root {
+      --royal-blue: #1E4A76;
+      --bright-gold: #D4AF37;
+      --dark-gold: #B8922A;
+      --soft-blue-bg: #EFF3F8;
+      --cream: #FEF9EF;
+    }
+
+    .top-bar {
+      background: var(--royal-blue);
+      color: white;
+      padding: 0.5rem 2rem;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--bright-gold);
+    }
+
+    .top-bar a {
+      color: var(--bright-gold);
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+
+    .navbar {
+      background: white;
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 3px solid var(--bright-gold);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-symbol {
+      background: var(--royal-blue);
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 2px solid var(--bright-gold);
+    }
+
+    .logo-symbol i {
+      font-size: 2.5rem;
+      color: var(--bright-gold);
+    }
+
+    .logo-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--royal-blue);
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #5a6e7c;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links > li > a {
+      text-decoration: none;
+      color: var(--royal-blue);
+      font-weight: 600;
+      transition: 0.2s;
+      font-size: 0.95rem;
+      display: inline-block;
+    }
+
+    .nav-links > li > a:hover {
+      color: var(--bright-gold);
+    }
+
+    /* DROPDOWN FIX — ensures clickability and proper hover */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown > a {
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 210px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+      border-radius: 14px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      border-top: 3px solid var(--bright-gold);
+      overflow: hidden;
+      pointer-events: none; /* initially no clicks */
+    }
+
+    .dropdown:hover .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto; /* enable clicks when visible */
+    }
+
+    .dropdown-content a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      color: var(--royal-blue);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-bottom: 1px solid #f0e9d8;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a i {
+      width: 22px;
+      color: var(--bright-gold);
+      font-size: 0.95rem;
+    }
+
+    .dropdown-content a:hover {
+      background: #FEF7E0;
+      color: var(--dark-gold);
+    }
+
+    /* make sure the dropdown parent keeps proper stacking */
+    .btn-gold {
+      background: var(--bright-gold);
+      color: var(--royal-blue);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .btn-gold:hover {
+      background: var(--dark-gold);
+      color: white;
+    }
+
+    .marquee-gold {
+      background: var(--bright-gold);
+      color: var(--royal-blue);
+      padding: 8px 0;
+      font-weight: 700;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 0.9rem;
+    }
+
+    .marquee-gold span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scrollMarquee 22s linear infinite;
+    }
+
+    @keyframes scrollMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(30,74,118,0.92), rgba(30,74,118,0.85)), url('img/logo1.png') center/cover no-repeat;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3.3rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .hero .founded {
+      font-size: 1.2rem;
+      background: rgba(212,175,55,0.2);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+      margin-top: 0.8rem;
+    }
+
+    .btn-outline-light {
+      border: 2px solid var(--bright-gold);
+      background: transparent;
+      color: var(--bright-gold);
+      padding: 0.7rem 2rem;
+      border-radius: 40px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+      margin-top: 1.5rem;
+    }
+
+    .btn-outline-light:hover {
+      background: var(--bright-gold);
+      color: var(--royal-blue);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      color: var(--royal-blue);
+      border-left: 6px solid var(--bright-gold);
+      padding-left: 20px;
+      margin-bottom: 2rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.8rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      border-bottom: 4px solid var(--bright-gold);
+    }
+
+    .info-card i {
+      font-size: 2.2rem;
+      color: var(--bright-gold);
+      margin-bottom: 1rem;
+    }
+
+    .badge-founder {
+      background: var(--royal-blue);
+      color: var(--bright-gold);
+      border-radius: 60px;
+      padding: 0.2rem 1rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+
+    .houses-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .house-item {
+      background: white;
+      border-radius: 36px;
+      padding: 0.8rem 1.8rem;
+      font-weight: bold;
+      text-align: center;
+      min-width: 130px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border-top: 5px solid var(--bright-gold);
+      color: var(--royal-blue);
+    }
+
+    .house-item span {
+      font-size: 0.8rem;
+      display: block;
+      font-weight: normal;
+    }
+
+    .testimonial {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: 32px;
+      margin: 2rem 0;
+      font-style: italic;
+      border-left: 8px solid var(--bright-gold);
+    }
+
+    footer {
+      background: var(--royal-blue);
+      color: #e2e8f0;
+      padding: 2.5rem 2rem 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-grid h4 {
+      color: var(--bright-gold);
+      margin-bottom: 1rem;
+    }
+
+    .footer-grid a {
+      color: #cbd5e6;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-grid a:hover {
+      color: var(--bright-gold);
+    }
+
+    .social-icons i {
+      font-size: 1.5rem;
+      margin-right: 15px;
+      color: white;
+      transition: 0.2s;
+    }
+
+    .social-icons i:hover {
+      color: var(--bright-gold);
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #2c5a74;
+      padding-top: 1.8rem;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 780px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      /* mobile: dropdown becomes click-to-expand */
+      .dropdown .dropdown-content {
+        position: static;
+        opacity: 1;
+        visibility: hidden;
+        transform: none;
+        pointer-events: none;
+        display: none;
+        box-shadow: none;
+        margin-top: 5px;
+        border-top: none;
+        background: #faf7f0;
+      }
+      .dropdown.active .dropdown-content {
+        display: block;
+        visibility: visible;
+        pointer-events: auto;
+      }
+      .dropdown:hover .dropdown-content {
+        opacity: 1;
+        visibility: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <div><i class="fas fa-map-marker-alt"></i> Ajilosun, Ado Ekiti, Nigeria</div>
+  <div><i class="fas fa-phone-alt"></i> +234 (0) 803 456 7890 <a href="#"><i class="fas fa-envelope"></i> info@stjosephajilosun.edu.ng</a></div>
+</div>
+
+<!-- Main Navigation with clickable E-Portal dropdown -->
+<div class="navbar">
+  <div class="logo-area">
+    <div class="logo-symbol">
+      <i class="fas fa-school"></i>
+    </div>
+    <div class="logo-text">
+      <h1>ST. JOSEPH'S COLLEGE</h1>
+      <p><strong>ORRA ET LABORA</strong> | <em>AD MULTOS ANNOS</em> ⚜️</p>
+      <p>Ajilosun, Ado Ekiti · Founded 1979</p>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#houses">Houses</a></li>
+    <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#contact">Contact</a></li>
+     <li><a href="login.html">CBT PORTAL LINK</a></li>
+    <!-- E-Portal Dropdown with fully clickable links -->
+    <li class="dropdown">
+      <a href="#" ><i class="fas fa-user-graduate"></i> E-Portal <i class="fas fa-caret-down"></i></a>
+      <div class="dropdown-content">
+        <a href="login.html" onclick="alert('🔐 CBT Portal: Redirecting to secure examination platform. (Demo)'); return true;">
+          <i class="fas fa-laptop-code"></i> CBT Portal
+        </a>
+        <a href="#" onclick="alert('📊 Report Portal: Access your results and transcripts. (Demo)'); return false;">
+          <i class="fas fa-chart-line"></i> Report Portal
+        </a>
+        <a href="#" onclick="alert('👩‍🏫 Teachers Portal: Login to manage grades & attendance. (Demo)'); return false;">
+          <i class="fas fa-chalkboard-user"></i> Teachers Portal
+        </a>
+      </div>
+    </li>
+    <li><a href="#" class="btn-gold"><i class="fas fa-graduation-cap"></i> Admissions</a></li>
+  </ul>
+</div>
+
+<!-- Marquee -->
+<div class="marquee-gold">
+  <span>✨ ST. JOSEPH'S COLLEGE, AJILOSUN — "ORRA ET LABORA" (PRAY AND WORK) — AD MULTOS ANNOS! ✨ 2025/2026 ADMISSIONS OPEN | E-PORTAL ACTIVE FOR STUDENTS & TEACHERS ✨</span>
+</div>
+
+<!-- Hero -->
+<section id="home">
+  <div class="hero">
+    <h1>St. Joseph's College, Ajilosun</h1>
+    <div class="founded"><i class="fas fa-church"></i> Founded 1979 by Bishop Emeritus Most Rev. Michael O. I.</div>
+    <p style="margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">"ORRA ET LABORA" — Pray and Work — Nurturing minds, building character since four decades.</p>
+    <a href="#about" class="btn-outline-light">Discover Our Legacy <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<div class="container">
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title"><i class="fas fa-hands-praying"></i> About St. Joseph's</h2>
+    <div class="grid-2col">
+      <div class="info-card">
+        <i class="fas fa-landmark"></i>
+        <h3>Our Foundation</h3>
+        <p>Established in 1979 by the visionary Bishop Emeritus of Ekiti Diocese, <strong>Most Rev. Michael O. I.</strong> (of blessed memory). St. Joseph's College was built on the pillars of spiritual formation, academic excellence, and community service. Located at the heart of Ajilosun, Ado Ekiti, we have formed generations of leaders guided by the motto <strong>"ORRA ET LABORA"</strong> (Pray and Work).</p>
+        <div class="badge-founder" style="margin-top: 12px;">⚜️ Ad Multos Annos — To many years! ⚜️</div>
+      </div>
+      <div class="info-card">
+        <i class="fas fa-chalkboard-user"></i>
+        <h3>Educational Ethos</h3>
+        <p>We blend Catholic values with modern pedagogy. Our students excel in sciences, arts, and vocational skills, while participating in robust spiritual activities, debates, and sports. We celebrate 45+ years of shaping Ekiti's brightest minds.</p>
+        <p><strong>Motto:</strong> ORRA ET LABORA · AD MULTOS ANNOS</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Heritage & Bishop -->
+  <section id="heritage">
+    <div class="testimonial">
+      <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--bright-gold); opacity: 0.6;"></i>
+      <p style="font-size: 1.1rem;">“In 1979, with the help of faithful clergy and laity, we laid the foundation stone of this great institution to provide integral education rooted in Christ. May St. Joseph intercede for every student who passes through these gates.”</p>
+      <p style="margin-top: 12px; font-weight: bold;">— Most Rev. Michael O. I. (Bishop Emeritus, Ekiti Diocese) ✝️</p>
+    </div>
+    <div style="background: white; border-radius: 28px; padding: 1.8rem; margin: 1rem 0 2rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+      <h3 style="color: var(--royal-blue);"><i class="fas fa-tree"></i> Our Legacy — Ad Multos Annos</h3>
+      <p>St. Joseph's College started as a minor seminary-inspired institution, later becoming a full-fledged secondary school. Through the years, the school has produced priests, doctors, engineers, and public servants. The crest carries the <strong>ORRA ET LABORA</strong> inscription, a reminder that prayer and hard work lead to true success. Every year, we celebrate "Josephite Day" honoring St. Joseph, our patron, with cultural displays and academic awards.</p>
+      <p><strong>Location:</strong> Ajilosun, along Old Iyin Road, Ado Ekiti — serene environment conducive for learning.</p>
+    </div>
+  </section>
+
+  <!-- Houses -->
+  <section id="houses">
+    <h2 class="section-title"><i class="fas fa-flag-checkered"></i> Student Houses</h2>
+    <p style="margin-bottom: 1.5rem;">Fostering healthy competition and unity. Our four houses are named after patron saints and pioneers.</p>
+    <div class="houses-flex">
+      <div class="house-item"><i class="fas fa-dove"></i> ST. MICHAEL <span>Azure & Gold</span></div>
+      <div class="house-item"><i class="fas fa-crown"></i> ST. JOSEPH <span>Royal Blue & Gold</span></div>
+      <div class="house-item"><i class="fas fa-fire"></i> ST. PAUL <span>Red & White</span></div>
+      <div class="house-item"><i class="fas fa-leaf"></i> ST. PATRICK <span>Green & Gold</span></div>
+    </div>
+    <div class="info-card" style="text-align: center;">
+      <i class="fas fa-trophy"></i>
+      <h3>Inter-House Sports & Academics</h3>
+      <p>Annual athletics, quiz competitions, and cultural debates. The Victorious House Shield is awarded each session. Join the spirit of "ORRA ET LABORA" through teamwork and excellence.</p>
+    </div>
+  </section>
+
+  <!-- Anthem -->
+  <section>
+    <h2 class="section-title"><i class="fas fa-music"></i> School Anthem</h2>
+    <div style="background: #fff5e0; border-radius: 32px; padding: 1.5rem; text-align: center;">
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600;">"St. Joseph, our guiding light,<br>
+      In prayer and work we find our might.<br>
+      ORRA ET LABORA, our joyful cry,<br>
+      Under the African sky.<br>
+      Ad Multos Annos, let the bell ring,<br>
+      Glory to God, our praises sing!"</p>
+      <p style="margin-top: 10px;">(Official anthem composed in 1985, revised during the 25th anniversary)</p>
+    </div>
+  </section>
+
+  <!-- Milestones -->
+  <section>
+    <div class="grid-2col" style="margin-top: 2rem;">
+      <div class="info-card">
+        <i class="fas fa-bishop"></i>
+        <h3>Bishop Emeritus Most Rev. Michael O. I.</h3>
+        <p>A revered shepherd, educator, and founder. Bishop Michael OI envisioned a school where faith meets reason. Under his patronage, St. Joseph's College Ajilosun has grown into a citadel of learning, and his legacy continues to inspire staff and students. He rests in glory, but his vision — "Ad Multos Annos" — echoes.</p>
+      </div>
+      <div class="info-card">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Milestones & Celebrations</h3>
+        <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
+          <li>1979: Founded by Bishop Michael OI</li>
+          <li>1999: Silver Jubilee celebration</li>
+          <li>2019: 40th anniversary & renovation of St. Joseph's Chapel</li>
+          <li>2024: Launch of STEM lab & digital library</li>
+        </ul>
+        <p style="margin-top: 12px;"><strong>Ad Multos Annos:</strong> May the school flourish for many years to come!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div style="background: var(--royal-blue); border-radius: 48px; padding: 2rem; text-align: center; color: white; margin: 2rem 0;">
+    <h3 style="color: var(--bright-gold); font-size: 1.8rem;">ORRA ET LABORA · AD MULTOS ANNOS</h3>
+    <p style="margin: 1rem 0;">Join a tradition of excellence rooted in Catholic identity and academic rigor. Enroll your ward today.</p>
+    <a href="#" style="background: var(--bright-gold); color: var(--royal-blue); padding: 0.8rem 2rem; border-radius: 40px; font-weight: bold; text-decoration: none; display: inline-block;">Apply for Admission <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title"><i class="fas fa-map-pin"></i> Visit Our Campus</h2>
+    <div class="grid-2col">
+      <div>
+        <p><i class="fas fa-location-dot" style="color: var(--bright-gold);"></i> <strong>St. Joseph's College, Ajilosun</strong><br> Ajilosun Quarters, beside St. Joseph's Catholic Church, Ado Ekiti, Ekiti State, Nigeria.</p>
+        <p><i class="fas fa-phone"></i> <strong>Principal's Office:</strong> +234 803 555 4321</p>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@stjosephajilosun.edu.ng</p>
+        <p><i class="fas fa-globe"></i> <strong>Web:</strong> www.stjosephajilosun.sch.ng</p>
+        <div style="margin-top: 1rem;">
+          <i class="fab fa-facebook"></i> <span style="margin-right: 1rem;">@StJosephsAjilosun</span>
+          <i class="fab fa-instagram"></i> <span>@JosephiteLegacy</span>
+        </div>
+      </div>
+      <div>
+        <iframe src="https://maps.google.com/maps?q=Ajilosun+Ado+Ekiti+Nigeria&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="220" style="border:0; border-radius: 24px;" allowfullscreen="" loading="lazy"></iframe>
+        <p class="badge-founder" style="margin-top: 12px; background: var(--royal-blue); display: inline-block;">📍 Landmark: Near Ajilosun Roundabout</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4><i class="fas fa-school"></i> St. Joseph's College</h4>
+      <p>ORRA ET LABORA · AD MULTOS ANNOS</p>
+      <p>Ajilosun, Ado Ekiti<br> Founded 1979 by Bishop Emeritus Most Rev. Michael OI.</p>
+      <div class="social-icons" style="margin-top: 12px;">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a href="#about">About & History</a>
+      <a href="#houses">Student Houses</a>
+      <a href="#heritage">Bishop's Legacy</a>
+      <a href="#">Alumni Portal</a>
+    </div>
+    <div>
+      <h4>E-Portals</h4>
+      <a href="login.html"><i class="fas fa-laptop-code"></i> CBT Portal</a>
+      <a href="#" onclick="alert('📊 Report Portal: Access your results and transcripts. (Demo)'); return false;"><i class="fas fa-chart-line"></i> Report Portal</a>
+      <a href="#" onclick="alert('👩‍🏫 Teachers Portal: Login to manage grades & attendance. (Demo)'); return false;"><i class="fas fa-chalkboard-user"></i> Teachers Portal</a>
+      <h4 style="margin-top: 12px;">Contact</h4>
+      <p><i class="fas fa-phone-alt"></i> +234 816 222 3344</p>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2026 St. Joseph's College, Ajilosun, Ado Ekiti. All Rights Reserved. <strong>ORRA ET LABORA — Ad Multos Annos!</strong> | Website by Josephite Tech Team</p>
+    <p>Honoring Bishop Emeritus Most Rev. Michael OI — Founder & Visionary ✝️</p>
+  </div>
+</footer>
+
+<script>
+  // Disable right-click (mimic)
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+  // Mobile dropdown toggle (fixes tap on small screens)
+  function handleMobileDropdown() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    if (window.innerWidth <= 780) {
+      dropdowns.forEach(drop => {
+        const trigger = drop.querySelector('> a');
+        if (!trigger.hasAttribute('data-listener')) {
+          trigger.setAttribute('data-listener', 'true');
+          trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            // close other dropdowns
+            dropdowns.forEach(other => {
+              if (other !== drop && other.classList.contains('active')) {
+                other.classList.remove('active');
+              }
+            });
+            drop.classList.toggle('active');
+          });
+        }
+      });
+    } else {
+      dropdowns.forEach(drop => drop.classList.remove('active'));
+    }
+  }
+  window.addEventListener('resize', handleMobileDropdown);
+  handleMobileDropdown();
+</script>
+</body>
+</html>
